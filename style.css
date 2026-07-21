@@ -190,9 +190,9 @@ GLASS CARD
 
     width: 100%;
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns: 45% 55%;
+    flex-direction: column;
 
     background: rgba(255, 255, 255, .45);
 
@@ -200,7 +200,7 @@ GLASS CARD
 
     border-radius: 35px;
 
-    padding: 60px;
+    padding: 50px 60px;
 
     border: 1px solid rgba(255, 255, 255, .4);
 
@@ -214,6 +214,43 @@ GLASS CARD
 
     position: relative;
 
+}
+
+.hero-header-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.hero-header-section .offer-tag {
+    margin: 0 auto 18px auto;
+}
+
+.hero-header-section h1 {
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #063970;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.hero-header-section .subtitle {
+    margin: 0 auto 25px auto;
+    text-align: center;
+    max-width: 680px;
+}
+
+.hero-header-section .countdown-box {
+    justify-content: center;
+    max-width: 620px;
+    margin: 0 auto 25px auto;
+}
+
+.hero-main-content {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    gap: 35px;
+    align-items: center;
 }
 
 /* ===========================
@@ -992,115 +1029,195 @@ footer {
         margin-top: 2px;
     }
 
-    /* Hero Mobile */
+    /* Hero Mobile Header */
     .hero {
-        padding: 20px 10px;
+        padding: 16px 8px;
     }
 
     .glass-card {
-        padding: 24px 16px;
-        border-radius: 24px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        padding: 20px 10px;
+        border-radius: 22px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     }
 
-    .doctor {
-        width: 220px;
-        max-width: 75%;
+    .hero-header-section {
+        margin-bottom: 15px;
     }
 
-    .doctor-glow {
-        width: 240px;
-        height: 240px;
-    }
-
-    .speech {
-        font-size: 15px;
-        padding: 10px 18px;
-        border-radius: 20px;
-    }
-
-    .right h1 {
-        font-size: clamp(25px, 6.5vw, 34px);
+    .hero-header-section h1 {
+        font-size: clamp(23px, 6vw, 32px);
         line-height: 1.25;
         word-break: break-word;
         overflow-wrap: break-word;
     }
 
     .offer-subheading {
-        font-size: clamp(16px, 4.2vw, 20px);
-        margin-top: 6px;
+        font-size: clamp(15px, 4vw, 19px);
+        margin-top: 5px;
     }
 
     .subtitle {
-        font-size: 14.5px;
-        line-height: 1.6;
-        margin-bottom: 25px;
+        font-size: 13.5px;
+        line-height: 1.5;
+        margin-bottom: 18px;
     }
 
     /* Countdown Grid Mobile */
     .countdown-box {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin: 22px 0;
+        gap: 6px;
+        margin: 16px 0;
         width: 100%;
     }
 
     .countdown-box div {
         min-width: unset;
         width: 100%;
-        padding: 12px 4px;
-        border-radius: 14px;
+        padding: 10px 2px;
+        border-radius: 12px;
     }
 
     .countdown-box span {
-        font-size: clamp(20px, 5.5vw, 28px);
+        font-size: clamp(18px, 5vw, 24px);
     }
 
     .countdown-box p {
-        font-size: 11px;
-        margin-top: 4px;
+        font-size: 10px;
+        margin-top: 3px;
     }
 
-    /* Offer Cards Mobile */
+    /* Side-by-Side Hero Main Content (Doctor Left, Offers Right) */
+    .hero-main-content {
+        display: grid;
+        grid-template-columns: 115px 1fr;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 15px;
+    }
+
+    .doctor-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .doctor-col .doctor-area {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .doctor-col .doctor {
+        width: 105px;
+        max-width: 100%;
+        height: auto;
+        animation: doctorFloat 3s ease-in-out infinite;
+    }
+
+    .doctor-col .doctor-glow {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-col .speech {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: auto;
+        transform: none;
+        margin: 0 auto 6px auto;
+        font-size: 11px;
+        padding: 6px 8px;
+        border-radius: 12px;
+        white-space: nowrap;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(10, 94, 176, 0.2);
+    }
+
+    .doctor-col .speech::after {
+        bottom: -8px;
+        left: 50%;
+        margin-left: -6px;
+        border-width: 8px 6px 0;
+    }
+
+    .doctor-col .badges-container {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .doctor-col .badge {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        font-size: 10.5px;
+        padding: 5px 8px;
+        border-radius: 14px;
+        white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: none;
+        width: max-content;
+    }
+
+    .offers-col {
+        width: 100%;
+    }
+
     .offer-card {
         flex-direction: row;
         text-align: left;
         align-items: center;
-        gap: 14px;
-        padding: 16px 14px;
-        margin-bottom: 14px;
-        border-radius: 18px;
+        gap: 10px;
+        padding: 12px 10px;
+        margin-bottom: 10px;
+        border-radius: 16px;
     }
 
     .offer-icon {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 20px;
         margin-bottom: 0;
     }
 
     .offer-card h3 {
-        font-size: 17px;
-        margin-bottom: 4px;
+        font-size: 14px;
+        margin-bottom: 3px;
     }
 
     .offer-card p {
-        font-size: 13.5px;
-        line-height: 1.5;
+        font-size: 11.5px;
+        line-height: 1.35;
+    }
+
+    /* Full Width Bottom Elements */
+    .validity, .claim-btn, .trust {
+        grid-column: 1 / -1;
     }
 
     /* Validity Mobile */
     .validity {
-        margin: 20px 0 16px;
-        padding: 12px 14px;
-        font-size: 14px;
+        margin: 16px 0 14px;
+        padding: 12px 10px;
+        font-size: 13.5px;
         border-radius: 14px;
     }
 
     .validity strong {
-        font-size: 16px;
+        font-size: 15px;
         display: inline-block;
         margin-top: 2px;
     }
@@ -1108,11 +1225,11 @@ footer {
     /* Primary CTA Button */
     .claim-btn {
         font-size: 16px;
-        padding: 16px 18px;
+        padding: 15px 16px;
         border-radius: 16px;
         width: 100%;
         justify-content: center;
-        min-height: 52px;
+        min-height: 50px;
     }
 
     /* Trust Grid Mobile */
@@ -1179,90 +1296,96 @@ footer {
 @media (max-width: 480px) {
 
     .hero {
-        padding: 12px 6px;
+        padding: 10px 4px;
     }
 
     .glass-card {
-        padding: 18px 12px;
-        border-radius: 20px;
+        padding: 16px 8px;
+        border-radius: 18px;
     }
 
-    .doctor {
-        width: 190px;
+    .hero-main-content {
+        grid-template-columns: 100px 1fr;
+        gap: 8px;
     }
 
-    .doctor-glow {
-        width: 190px;
-        height: 190px;
+    .doctor-col .doctor {
+        width: 90px;
     }
 
-    .badges-container {
-        gap: 6px;
+    .doctor-col .doctor-glow {
+        width: 100px;
+        height: 100px;
     }
 
-    .badge {
-        font-size: 11.5px;
-        padding: 5px 10px;
+    .doctor-col .speech {
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+
+    .doctor-col .badge {
+        font-size: 9.5px;
+        padding: 4px 6px;
     }
 
     .offer-tag {
-        font-size: 11px;
-        padding: 6px 14px;
-        margin-bottom: 12px;
+        font-size: 10.5px;
+        padding: 5px 12px;
+        margin-bottom: 10px;
     }
 
-    .right h1 {
-        font-size: 24px;
+    .hero-header-section h1 {
+        font-size: 22px;
     }
 
     .offer-subheading {
-        font-size: 15px;
+        font-size: 14.5px;
     }
 
     .subtitle {
-        font-size: 13.5px;
-        margin-bottom: 18px;
+        font-size: 12.5px;
+        margin-bottom: 14px;
     }
 
     .countdown-box {
-        gap: 6px;
+        gap: 4px;
     }
 
     .countdown-box div {
-        padding: 10px 2px;
-        border-radius: 12px;
+        padding: 8px 2px;
+        border-radius: 10px;
     }
 
     .countdown-box span {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .countdown-box p {
-        font-size: 10px;
+        font-size: 9.5px;
     }
 
     .offer-card {
-        padding: 12px 10px;
-        gap: 10px;
+        padding: 10px 6px;
+        gap: 8px;
     }
 
     .offer-icon {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        font-size: 20px;
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 17px;
     }
 
     .offer-card h3 {
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .offer-card p {
-        font-size: 12.5px;
+        font-size: 10.5px;
     }
 
     .trust div {
-        font-size: 11px;
+        font-size: 10.5px;
         padding: 8px 4px;
     }
 
