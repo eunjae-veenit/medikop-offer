@@ -241,12 +241,14 @@ leadForm.addEventListener("submit", function (e) {
 
                 // Populate Personalized Thank You Name & Token Pass details
                 const thankYouName = document.getElementById("thankYouName");
+                const thankYouSub = document.querySelector(".thank-you-sub");
                 const displayTokenCode = document.getElementById("displayTokenCode");
                 const displayCustomerName = document.getElementById("displayCustomerName");
                 const displayCustomerMobile = document.getElementById("displayCustomerMobile");
                 const displayCustomerCity = document.getElementById("displayCustomerCity");
 
                 if (thankYouName) thankYouName.textContent = nameVal;
+                if (thankYouSub) thankYouSub.textContent = "🍿 Grab Your Snack Pass – Visit Our Stall No. 2D12 (Hall 2) to Redeem It!";
                 if (displayTokenCode) displayTokenCode.textContent = tokenId;
                 if (displayCustomerName) displayCustomerName.textContent = nameVal;
                 if (displayCustomerMobile) displayCustomerMobile.textContent = mobileVal;
