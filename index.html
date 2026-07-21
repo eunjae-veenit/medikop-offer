@@ -281,84 +281,32 @@
                 <h3 class="thank-you-title">🎉 Thank You, <span id="thankYouName">Valued Customer</span>!</h3>
                 <p class="thank-you-sub">Your Independence Day Offer Token Pass has been generated successfully.</p>
 
-                <!-- Token Voucher Card -->
-                <div class="token-card" id="tokenCard">
-                    <div class="token-card-top-bar">
-                        🇮🇳 MEDIKOP LIFE SCIENCE OFFICIAL OFFER PASS 🇮🇳
+                <!-- Ultra Compact Smart Pass Card -->
+                <div class="smart-token-pass" id="tokenCard">
+                    <div class="smart-pass-header">
+                        <img src="medikop-logo.jpeg" alt="Medikop" class="smart-logo">
+                        <span class="smart-badge">VIP OFFER PASS</span>
                     </div>
 
-                    <div class="token-card-header">
-                        <img src="medikop-logo.jpeg" alt="Medikop Life Science" class="token-logo">
-                        <div class="token-badge-pill">VIP OFFER TOKEN</div>
+                    <div class="smart-code-box">
+                        <div class="smart-code-left">
+                            <span class="smart-lbl">TOKEN NO:</span>
+                            <strong class="smart-code" id="displayTokenCode">MDK-XXXX</strong>
+                        </div>
+                        <button type="button" class="smart-copy-btn" id="copyTokenBtn">
+                            📋 <span id="copyBtnText">Copy</span>
+                        </button>
                     </div>
 
-                    <div class="token-number-box">
-                        <span class="token-label">YOUR UNIQUE TOKEN NUMBER</span>
-                        <div class="token-code-row">
-                            <h2 class="token-code" id="displayTokenCode">MDK-2026-XXXXXX</h2>
-                            <button type="button" class="copy-token-btn" id="copyTokenBtn" title="Copy Token Code">
-                                📋 <span id="copyBtnText">Copy</span>
-                            </button>
-                        </div>
-                        <!-- Decorative Barcode Graphic -->
-                        <div class="barcode-graphic">
-                            <svg viewBox="0 0 200 30" class="barcode-svg" preserveAspectRatio="none">
-                                <rect x="5" y="0" width="3" height="30" fill="#ffffff" />
-                                <rect x="11" y="0" width="6" height="30" fill="#ffffff" />
-                                <rect x="20" y="0" width="2" height="30" fill="#ffffff" />
-                                <rect x="25" y="0" width="8" height="30" fill="#ffffff" />
-                                <rect x="36" y="0" width="4" height="30" fill="#ffffff" />
-                                <rect x="43" y="0" width="7" height="30" fill="#ffffff" />
-                                <rect x="53" y="0" width="2" height="30" fill="#ffffff" />
-                                <rect x="58" y="0" width="5" height="30" fill="#ffffff" />
-                                <rect x="66" y="0" width="9" height="30" fill="#ffffff" />
-                                <rect x="78" y="0" width="3" height="30" fill="#ffffff" />
-                                <rect x="84" y="0" width="6" height="30" fill="#ffffff" />
-                                <rect x="93" y="0" width="4" height="30" fill="#ffffff" />
-                                <rect x="100" y="0" width="8" height="30" fill="#ffffff" />
-                                <rect x="111" y="0" width="2" height="30" fill="#ffffff" />
-                                <rect x="116" y="0" width="5" height="30" fill="#ffffff" />
-                                <rect x="124" y="0" width="7" height="30" fill="#ffffff" />
-                                <rect x="134" y="0" width="3" height="30" fill="#ffffff" />
-                                <rect x="140" y="0" width="6" height="30" fill="#ffffff" />
-                                <rect x="149" y="0" width="2" height="30" fill="#ffffff" />
-                                <rect x="154" y="0" width="8" height="30" fill="#ffffff" />
-                                <rect x="165" y="0" width="4" height="30" fill="#ffffff" />
-                                <rect x="172" y="0" width="7" height="30" fill="#ffffff" />
-                                <rect x="182" y="0" width="3" height="30" fill="#ffffff" />
-                                <rect x="188" y="0" width="6" height="30" fill="#ffffff" />
-                            </svg>
-                        </div>
+                    <div class="smart-details-grid">
+                        <div><span>Name:</span> <strong id="displayCustomerName">-</strong></div>
+                        <div><span>Phone:</span> <strong id="displayCustomerMobile">-</strong></div>
+                        <div><span>City:</span> <strong id="displayCustomerCity">-</strong></div>
+                        <div><span>Valid:</span> <strong>15 Aug 2026</strong></div>
                     </div>
 
-                    <div class="token-details-grid">
-                        <div class="token-detail-item">
-                            <span class="detail-label">Customer Name</span>
-                            <strong class="detail-val" id="displayCustomerName">-</strong>
-                        </div>
-                        <div class="token-detail-item">
-                            <span class="detail-label">Mobile Number</span>
-                            <strong class="detail-val" id="displayCustomerMobile">-</strong>
-                        </div>
-                        <div class="token-detail-item">
-                            <span class="detail-label">City</span>
-                            <strong class="detail-val" id="displayCustomerCity">-</strong>
-                        </div>
-                        <div class="token-detail-item">
-                            <span class="detail-label">Valid Until</span>
-                            <strong class="detail-val highlight-green">15 August 2026</strong>
-                        </div>
-                    </div>
-
-                    <div class="token-offer-summary">
-                        <div class="stall-badge">📍 VISIT STALL NO. 2D12 (HALL NO. 2)</div>
-                        <p class="offer-desc">🎉 Enjoy <strong>7.5% OFF / 5% OFF</strong> on Medical Goods & Get
-                            Guaranteed Gift!</p>
-                    </div>
-
-                    <div class="token-footer-note">
-                        📸 <strong>Please screenshot or save this token pass</strong> and present it at our Medikop
-                        stall to redeem your offer.
+                    <div class="smart-footer-bar">
+                        📍 <strong>Stall 2D12 (Hall 2)</strong> | 🎁 Up to 7.5% OFF + Free Gift & Snacks
                     </div>
                 </div>
 
