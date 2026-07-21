@@ -1,335 +1,2112 @@
-/* ==========================================
-   COUNTDOWN TIMER
-========================================== */
+/* ===========================
+   GOOGLE RESET
+=========================== */
 
-const targetDate = new Date("August 15, 2026 23:59:59").getTime();
-
-function updateCountdown() {
-
-    const now = new Date().getTime();
-
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
-
-        return;
-
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerHTML = String(days).padStart(2, "0");
-    document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
-    document.getElementById("minutes").innerHTML = String(minutes).padStart(2, "0");
-    document.getElementById("seconds").innerHTML = String(seconds).padStart(2, "0");
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-setInterval(updateCountdown, 1000);
+html {
+    scroll-behavior: smooth;
+}
 
-updateCountdown();
+body {
+    background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
 
+/* ===========================
+BACKGROUND
+=========================== */
 
-/* ==========================================
-   CONFETTI
-========================================== */
+.bg-circle {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .35;
+    z-index: -3;
+    animation: floatBlob 12s ease-in-out infinite;
+}
 
-const container = document.getElementById("confetti-container");
+.one {
+    width: 350px;
+    height: 350px;
+    background: #ff8f1f;
+    left: -120px;
+    top: -100px;
+}
 
-const colors = [
-    "#FF9933",
-    "#FFFFFF",
-    "#138808",
-    "#0A5EB0"
-];
+.two {
+    width: 320px;
+    height: 320px;
+    background: #1ea95d;
+    right: -120px;
+    bottom: -120px;
+    animation-delay: 3s;
+}
 
-function createConfetti() {
+.three {
+    width: 280px;
+    height: 280px;
+    background: #0A5EB0;
+    top: 40%;
+    left: 45%;
+    opacity: .15;
+    animation-delay: 6s;
+}
 
-    for (let i = 0; i < 140; i++) {
+@keyframes floatBlob {
 
-        const confetti = document.createElement("div");
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
 
-        confetti.style.position = "fixed";
-
-        confetti.style.width = Math.random() * 8 + 5 + "px";
-
-        confetti.style.height = Math.random() * 15 + 8 + "px";
-
-        confetti.style.left = Math.random() * 100 + "vw";
-
-        confetti.style.top = "-20px";
-
-        confetti.style.opacity = ".95";
-
-        confetti.style.borderRadius = "3px";
-
-        confetti.style.pointerEvents = "none";
-
-        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-
-        const duration = Math.random() * 4 + 4;
-
-        container.appendChild(confetti);
-
-        confetti.animate([
-
-            {
-                transform: `translateY(0px) rotate(0deg)`,
-                opacity: 1
-            },
-
-            {
-                transform: `translateY(${window.innerHeight + 150}px) rotate(${Math.random() * 720}deg)`,
-                opacity: 0.8
-            }
-
-        ], {
-
-            duration: duration * 1000,
-
-            iterations: 1,
-
-            easing: "linear"
-
-        });
-
-        setTimeout(() => {
-
-            confetti.remove();
-
-        }, duration * 1000);
-
+    50% {
+        transform: translateY(-40px);
     }
 
 }
 
-window.onload = () => {
+/* ===========================
+TOP NAVBAR HEADER
+=========================== */
 
-    createConfetti();
+.top-navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 25px rgba(6, 57, 112, 0.08);
+}
 
-};
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
 
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: white;
+    padding: 8px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-/* ==========================================
-   CTA RIPPLE EFFECT & POPUP FORM
-========================================== */
+.nav-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
 
-const button = document.getElementById("claimBtn");
-const popup = document.getElementById("popupForm");
-const closePopup = document.getElementById("closePopup");
+.nav-logo-img {
+    height: 70px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+    display: block;
+}
 
-const leadForm = document.getElementById("leadForm");
-const nameInput = document.getElementById("name");
-const mobileInput = document.getElementById("mobile");
-const cityInput = document.getElementById("city");
-const companyInput = document.getElementById("company");
-const submitBtn = document.getElementById("submitBtn");
-const submitSpinner = document.getElementById("submitSpinner");
-const btnText = submitBtn.querySelector(".btn-text");
+.nav-banner {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #063970;
+    background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.25);
+    max-width: 560px;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(255, 153, 51, 0.4);
+}
 
-// Ripple effect on CTA button (keeping hover ripple behavior intact)
-button.addEventListener("mousemove", function (e) {
-    const x = e.offsetX;
-    const y = e.offsetY;
-    button.style.setProperty("--x", x + "px");
-    button.style.setProperty("--y", y + "px");
-});
+.nav-banner span {
+    background: linear-gradient(90deg, #a82e00, #063970, #085e03);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-// Show popup on CTA click (both hero button and navbar button)
-document.querySelectorAll("#claimBtn, #navClaimBtn, .claim-trigger").forEach(btn => {
-    btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        popup.style.display = "flex";
-    });
-});
+.nav-claim-btn {
+    background: linear-gradient(135deg, #0A5EB0, #138808);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(10, 94, 176, 0.25);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
 
-// Hide popup on close button click
-closePopup.addEventListener("click", function () {
-    popup.style.display = "none";
-});
+.nav-claim-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(10, 94, 176, 0.35);
+}
 
-// Hide popup on outside click
-window.addEventListener("click", function (e) {
-    if (e.target === popup) {
-        popup.style.display = "none";
+/* ===========================
+HERO
+=========================== */
+
+.hero {
+
+    padding: 60px 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+/* ===========================
+GLASS CARD
+=========================== */
+
+.glass-card {
+
+    max-width: 1300px;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, .45);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 35px;
+
+    padding: 50px 60px;
+
+    border: 1px solid rgba(255, 255, 255, .4);
+
+    box-shadow:
+
+        0 30px 60px rgba(0, 0, 0, .15),
+
+        0 0 80px rgba(255, 255, 255, .35);
+
+    overflow: hidden;
+
+    position: relative;
+
+}
+
+.hero-header-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.hero-header-section .offer-tag {
+    margin: 0 auto 18px auto;
+}
+
+.hero-header-section h1 {
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #063970;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.hero-header-section .subtitle {
+    margin: 0 auto 25px auto;
+    text-align: center;
+    max-width: 680px;
+}
+
+.hero-header-section .countdown-box {
+    justify-content: center;
+    max-width: 620px;
+    margin: 0 auto 25px auto;
+}
+
+.hero-main-content {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    gap: 35px;
+    align-items: center;
+}
+
+/* ===========================
+LEFT
+=========================== */
+
+.left {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+}
+
+.doctor-area {
+
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+.doctor-glow {
+
+    position: absolute;
+
+    width: 360px;
+
+    height: 360px;
+
+    background: radial-gradient(circle, #ffffff, #0A5EB0);
+
+    opacity: .18;
+
+    filter: blur(45px);
+
+    border-radius: 50%;
+
+    animation: glow 4s infinite alternate;
+
+}
+
+@keyframes glow {
+
+    from {
+
+        transform: scale(.95);
+
     }
-});
 
-// Validate and process form submission
-leadForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+    to {
 
-    const nameVal = nameInput.value.trim();
-    const mobileVal = mobileInput.value.trim();
-    const cityVal = cityInput.value.trim();
-    const companyVal = companyInput ? companyInput.value.trim() : "";
+        transform: scale(1.08);
 
-    // Reset validation state
-    mobileInput.setCustomValidity("");
-
-    // Validate mobile number is exactly 10 digits
-    if (!/^\d{10}$/.test(mobileVal)) {
-        mobileInput.setCustomValidity("Mobile number must be exactly 10 digits.");
-        mobileInput.reportValidity();
-        return;
     }
 
-    // Disable input fields and show loading state
-    nameInput.disabled = true;
-    mobileInput.disabled = true;
-    cityInput.disabled = true;
-    if (companyInput) companyInput.disabled = true;
-    submitBtn.disabled = true;
-    btnText.style.display = "none";
-    submitSpinner.style.display = "inline-block";
+}
 
-    // Generate Short 4-Digit Unique Medikop Token Code (e.g. MDK-8492)
-    const randomTokenNum = Math.floor(1000 + Math.random() * 9000);
-    const tokenId = `MDK-${randomTokenNum}`;
+.doctor {
 
-    // Prepare JSON payload
-    const payload = {
-        name: nameVal,
-        mobile: mobileVal,
-        city: cityVal,
-        company: companyVal,
-        tokenId: tokenId,
-        token: tokenId,
-        token_id: tokenId,
-        date: new Date().toLocaleDateString('en-IN')
-    };
+    width: 380px;
 
-    // Construct URL with query parameters as fallback for Google Apps Script e.parameter
-    const baseUrl = "https://script.google.com/macros/s/AKfycbyiXSD04KYkmDKhRXcAeAnNX0LocR8ylil-4nzWjIVLvNOlhbIZ_YlVQ6bIUkz4esTN/exec";
-    const queryParams = `?name=${encodeURIComponent(nameVal)}&mobile=${encodeURIComponent(mobileVal)}&city=${encodeURIComponent(cityVal)}&company=${encodeURIComponent(companyVal)}&tokenId=${encodeURIComponent(tokenId)}&token=${encodeURIComponent(tokenId)}`;
-    const fullUrl = baseUrl + queryParams;
+    max-width: 100%;
 
-    // Send POST request to Google Apps Script Web App
-    fetch(fullUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to submit details. Please try again.");
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === "success") {
-                // Hide the header and descriptive text inside popup
-                const popupH2 = document.querySelector(".popup-box h2");
-                const popupP = document.querySelector(".popup-box p");
-                if (popupH2) popupH2.style.display = "none";
-                if (popupP) popupP.style.display = "none";
+    position: relative;
 
-                // Populate Personalized Thank You Name & Token Pass details
-                const thankYouName = document.getElementById("thankYouName");
-                const displayTokenCode = document.getElementById("displayTokenCode");
-                const displayCustomerName = document.getElementById("displayCustomerName");
-                const displayCustomerMobile = document.getElementById("displayCustomerMobile");
-                const displayCustomerCity = document.getElementById("displayCustomerCity");
+    z-index: 2;
 
-                if (thankYouName) thankYouName.textContent = nameVal;
-                if (displayTokenCode) displayTokenCode.textContent = tokenId;
-                if (displayCustomerName) displayCustomerName.textContent = nameVal;
-                if (displayCustomerMobile) displayCustomerMobile.textContent = mobileVal;
-                if (displayCustomerCity) displayCustomerCity.textContent = cityVal;
+    animation: doctorFloat 3s ease-in-out infinite;
 
-                // Setup Copy Token Button functionality
-                const copyBtn = document.getElementById("copyTokenBtn");
-                const copyBtnText = document.getElementById("copyBtnText");
-                if (copyBtn) {
-                    copyBtn.onclick = function () {
-                        navigator.clipboard.writeText(tokenId).then(() => {
-                            if (copyBtnText) copyBtnText.textContent = "Copied!";
-                            setTimeout(() => {
-                                if (copyBtnText) copyBtnText.textContent = "Copy";
-                            }, 2000);
-                        }).catch(() => {
-                            alert(`Token ID: ${tokenId}`);
-                        });
-                    };
-                }
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, .22));
 
-                // Hide form and show Token Pass card
-                leadForm.style.display = "none";
-                const successMessage = document.getElementById("successMessage");
-                if (successMessage) successMessage.style.display = "block";
+}
 
-                // Trigger celebratory confetti burst
-                if (typeof createConfetti === "function") {
-                    createConfetti();
-                }
-            } else {
-                throw new Error(data.message || "Submission failed on server. Please try again.");
-            }
-        })
-        .catch(error => {
-            alert(error.message || "An unexpected error occurred. Please try again.");
+@keyframes doctorFloat {
 
-            // Re-enable form fields for user to correct and try again
-            nameInput.disabled = false;
-            mobileInput.disabled = false;
-            cityInput.disabled = false;
-            if (companyInput) companyInput.disabled = false;
-            submitBtn.disabled = false;
-            btnText.style.display = "inline-block";
-            submitSpinner.style.display = "none";
-        });
-});
+    0%,
+    100% {
 
+        transform: translateY(0px);
 
-/* ==========================================
-/* ==========================================
-   PARALLAX (Desktop fine-pointer only)
-========================================== */
+    }
 
-if (window.matchMedia("(pointer: fine)").matches) {
-    document.addEventListener("mousemove", (e) => {
-        const doctor = document.querySelector(".doctor");
-        if (doctor) {
-            const x = (window.innerWidth / 2 - e.clientX) / 45;
-            const y = (window.innerHeight / 2 - e.clientY) / 45;
-            doctor.style.transform = `translate(${x}px,${y}px)`;
-        }
-    });
+    50% {
+
+        transform: translateY(-15px);
+
+    }
+
+}
+
+/* ===========================
+SPEECH
+=========================== */
+
+.speech {
+
+    position: absolute;
+
+    top: 40px;
+
+    right: 10px;
+
+    background: white;
+
+    padding: 18px 26px;
+
+    border-radius: 30px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #0A5EB0;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+
+    animation: bounceSpeech 1.8s infinite;
+
+    z-index: 3;
+
+}
+
+.speech::after {
+
+    content: '';
+
+    position: absolute;
+
+    bottom: -14px;
+
+    left: 40px;
+
+    border-width: 15px 12px 0;
+
+    border-style: solid;
+
+    border-color: white transparent transparent;
+
+}
+
+@keyframes bounceSpeech {
+
+    0%,
+    100% {
+
+        transform: translateY(0px);
+
+    }
+
+    50% {
+
+        transform: translateY(-10px);
+
+    }
+
+}
+
+/* ===========================
+FLOATING BADGES
+=========================== */
+
+.badges-container {
+    position: contents;
+}
+
+.badge {
+
+    position: absolute;
+
+    padding: 12px 18px;
+
+    border-radius: 50px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: white;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+
+    animation: badgeFloat 3s infinite;
+
+    z-index: 4;
+
+}
+
+.badge1 {
+
+    background: #0A5EB0;
+
+    top: 15%;
+
+    left: 0;
+
+}
+
+.badge2 {
+
+    background: #ff7a00;
+
+    top: 55%;
+
+    right: 0;
+
+    animation-delay: 1s;
+
+}
+
+.badge3 {
+
+    background: #16a34a;
+
+    bottom: 8%;
+
+    left: 12%;
+
+    animation-delay: 2s;
+
+}
+
+@keyframes badgeFloat {
+
+    0%,
+    100% {
+
+        transform: translateY(0px);
+
+    }
+
+    50% {
+
+        transform: translateY(-12px);
+
+    }
+
+}
+
+/* ===========================
+RIGHT CONTENT
+=========================== */
+
+.right {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
 }
 
 
+.offer-tag {
+    display: inline-block;
+    width: max-content;
+    padding: 8px 22px;
+    background: linear-gradient(135deg, #FFD700, #ff9900);
+    border-radius: 40px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.right h1 {
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #063970;
+    margin-bottom: 20px;
+}
+
+.highlight-title {
+    background: linear-gradient(135deg, #ff5722 0%, #d90429 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-weight: 900;
+    text-shadow: 0 4px 20px rgba(255, 87, 34, 0.2);
+}
+
+.offer-subheading {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #0A5EB0, #138808);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 12px;
+}
+
+.subtitle {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #555;
+
+    margin-bottom: 35px;
+
+    max-width: 650px;
+
+}
+
 /* ==========================================
-   SCROLL REVEAL VIA CSS CLASS
+   COUNTDOWN
 ========================================== */
 
-const revealElements = document.querySelectorAll(".offer-card, .trust div, .claim-btn, .countdown-box");
+.countdown-box {
+    display: flex;
+    gap: 15px;
+    margin: 35px 0;
+    flex-wrap: wrap;
+}
 
-if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+.countdown-box div {
+    flex: 1;
+    min-width: 90px;
+    background: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(15px);
+    padding: 20px 10px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .08);
+    transition: .35s;
+    border: 1px solid rgba(255, 255, 255, .5);
+}
 
-    revealElements.forEach(el => observer.observe(el));
-} else {
-    revealElements.forEach(el => el.classList.add("is-visible"));
+.countdown-box div:hover {
+    transform: translateY(-8px);
+}
+
+.countdown-box span {
+    display: block;
+    font-size: 34px;
+    font-weight: 800;
+    color: #0A5EB0;
+}
+
+.countdown-box p {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+}
+
+/* ==========================================
+   OFFER CARDS
+========================================== */
+
+.offer-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, .75);
+    backdrop-filter: blur(15px);
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, .45);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+    transition: .35s;
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-card::before {
+    content: '';
+    position: absolute;
+    left: -120%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
+    transition: .8s;
+}
+
+.offer-card:hover::before {
+    left: 120%;
+}
+
+.offer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, .15);
+}
+
+.offer-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0A5EB0, #1677ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: white;
+    box-shadow: 0 12px 25px rgba(10, 94, 176, .35);
+}
+
+.offer-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.offer-card:nth-of-type(1) h3 {
+    background: linear-gradient(135deg, #0A5EB0, #0056b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.offer-card:nth-of-type(2) h3 {
+    background: linear-gradient(135deg, #ff5722, #d84315);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.offer-card:nth-of-type(3) h3 {
+    background: linear-gradient(135deg, #138808, #2e7d32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.offer-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+/* ==========================================
+   VALIDITY
+========================================== */
+
+.validity {
+    margin: 35px 0 25px;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fff3cd, #ffe082);
+    font-size: 19px;
+    font-weight: 800;
+    text-align: center;
+    color: #975a16;
+    box-shadow: 0 10px 25px rgba(255, 193, 7, .3);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.validity strong {
+    color: #d90429;
+    font-size: 21px;
+    font-weight: 900;
+    margin-left: 6px;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.claim-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 18px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #0A5EB0, #25D366, #138808);
+    background-size: 250% 250%;
+    animation: gradientMove 5s linear infinite;
+    box-shadow: 0 20px 40px rgba(37, 211, 102, .35);
+    transition: .35s;
+    overflow: hidden;
+    position: relative;
+}
+
+.claim-btn::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transition: 1s;
+}
+
+.claim-btn:hover::before {
+    left: 120%;
+}
+
+.claim-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+/* ==========================================
+   TRUST
+========================================== */
+
+.trust {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+}
+
+.trust div {
+    background: rgba(255, 255, 255, .65);
+    backdrop-filter: blur(12px);
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+    transition: .3s;
+}
+
+.trust div:hover {
+    transform: translateY(-6px);
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    padding: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #063970;
+}
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+    opacity: .25;
+}
+
+.particles span:nth-child(1) {
+    left: 8%;
+    background: #FF9933;
+    animation-duration: 8s;
+}
+
+.particles span:nth-child(2) {
+    left: 18%;
+    background: #138808;
+    animation-duration: 12s;
+}
+
+.particles span:nth-child(3) {
+    left: 30%;
+    background: #0A5EB0;
+    animation-duration: 10s;
+}
+
+.particles span:nth-child(4) {
+    left: 48%;
+    background: #FF9933;
+    animation-duration: 9s;
+}
+
+.particles span:nth-child(5) {
+    left: 62%;
+    background: #138808;
+    animation-duration: 11s;
+}
+
+.particles span:nth-child(6) {
+    left: 74%;
+    background: #0A5EB0;
+    animation-duration: 13s;
+}
+
+.particles span:nth-child(7) {
+    left: 88%;
+    background: #FF9933;
+    animation-duration: 10s;
+}
+
+.particles span:nth-child(8) {
+    left: 95%;
+    background: #138808;
+    animation-duration: 9s;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform: translateY(100vh) scale(.4);
+    }
+
+    100% {
+        transform: translateY(-120px) scale(1.2);
+    }
+
+}
+
+/* ==========================================
+   MOBILE BOTTOM FLOATING BAR
+========================================== */
+
+.mobile-bottom-bar {
+    display: none;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (TABLETS & PHONES)
+========================================== */
+
+@media (max-width: 1024px) {
+
+    .hero {
+        padding: 40px 15px;
+    }
+
+    .glass-card {
+        grid-template-columns: 1fr;
+        padding: 45px 30px;
+        text-align: center;
+    }
+
+    .left {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
+        align-items: center;
+    }
+
+    .offer-tag {
+        margin: 0 auto 18px auto;
+    }
+
+    .right h1 {
+        font-size: 42px;
+        text-align: center;
+    }
+
+    .subtitle {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .doctor {
+        width: 300px;
+    }
+
+    .speech {
+        position: relative;
+        top: 0;
+        right: auto;
+        left: auto;
+        margin: 0 auto 15px auto;
+        display: inline-block;
+    }
+
+    .speech::after {
+        left: 50%;
+        margin-left: -12px;
+    }
+
+    .badges-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .badge {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding-bottom: 65px; /* Leave room for mobile bottom floating bar */
+    }
+
+    /* Top Navbar Mobile */
+    .top-navbar {
+        padding: 2px 0;
+    }
+
+    .nav-container {
+        padding: 8px 14px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .nav-logo {
+        padding: 6px 12px;
+    }
+
+    .nav-logo-img {
+        height: 44px;
+    }
+
+    .nav-claim-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+        border-radius: 12px;
+    }
+
+    .nav-banner {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        font-size: 12px;
+        padding: 6px 10px;
+        margin-top: 2px;
+    }
+
+    /* Hero Mobile Header */
+    .hero {
+        padding: 16px 8px;
+    }
+
+    .glass-card {
+        padding: 20px 10px;
+        border-radius: 22px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-header-section {
+        margin-bottom: 15px;
+    }
+
+    .hero-header-section h1 {
+        font-size: clamp(23px, 6vw, 32px);
+        line-height: 1.25;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .offer-subheading {
+        font-size: clamp(15px, 4vw, 19px);
+        margin-top: 5px;
+    }
+
+    .subtitle {
+        font-size: 13.5px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    /* Countdown Grid Mobile */
+    .countdown-box {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        margin: 16px 0;
+        width: 100%;
+    }
+
+    .countdown-box div {
+        min-width: unset;
+        width: 100%;
+        padding: 10px 2px;
+        border-radius: 12px;
+    }
+
+    .countdown-box span {
+        font-size: clamp(18px, 5vw, 24px);
+    }
+
+    .countdown-box p {
+        font-size: 10px;
+        margin-top: 3px;
+    }
+
+    /* Side-by-Side Hero Main Content (Doctor Left, Offers Right) */
+    .hero-main-content {
+        display: grid;
+        grid-template-columns: 115px 1fr;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 15px;
+    }
+
+    .doctor-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .doctor-col .doctor-area {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .doctor-col .doctor {
+        width: 105px;
+        max-width: 100%;
+        height: auto;
+        animation: doctorFloat 3s ease-in-out infinite;
+    }
+
+    .doctor-col .doctor-glow {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-col .speech {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: auto;
+        transform: none;
+        margin: 0 auto 6px auto;
+        font-size: 11px;
+        padding: 6px 8px;
+        border-radius: 12px;
+        white-space: nowrap;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(10, 94, 176, 0.2);
+    }
+
+    .doctor-col .speech::after {
+        bottom: -8px;
+        left: 50%;
+        margin-left: -6px;
+        border-width: 8px 6px 0;
+    }
+
+    .doctor-col .badges-container {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .doctor-col .badge {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        font-size: 10.5px;
+        padding: 5px 8px;
+        border-radius: 14px;
+        white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: none;
+        width: max-content;
+    }
+
+    .offers-col {
+        width: 100%;
+    }
+
+    .offer-card {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 10px;
+        margin-bottom: 10px;
+        border-radius: 16px;
+    }
+
+    .offer-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .offer-card h3 {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .offer-card p {
+        font-size: 11.5px;
+        line-height: 1.35;
+    }
+
+    /* Full Width Bottom Elements */
+    .validity, .claim-btn, .trust {
+        grid-column: 1 / -1;
+    }
+
+    /* Validity Mobile */
+    .validity {
+        margin: 16px 0 14px;
+        padding: 12px 10px;
+        font-size: 13.5px;
+        border-radius: 14px;
+    }
+
+    .validity strong {
+        font-size: 15px;
+        display: inline-block;
+        margin-top: 2px;
+    }
+
+    /* Primary CTA Button */
+    .claim-btn {
+        font-size: 16px;
+        padding: 15px 16px;
+        border-radius: 16px;
+        width: 100%;
+        justify-content: center;
+        min-height: 50px;
+    }
+
+    /* Trust Grid Mobile */
+    .trust {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 24px;
+        width: 100%;
+    }
+
+    .trust div {
+        padding: 12px 8px;
+        font-size: 12px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 48px;
+        line-height: 1.3;
+    }
+
+    /* Mobile Sticky Bottom Floating Bar */
+    .mobile-bottom-bar {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.12);
+        border-top: 1px solid rgba(255, 255, 255, 0.6);
+        z-index: 998;
+    }
+
+    .mobile-claim-btn {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 14px;
+        border: none;
+        background: linear-gradient(135deg, #0A5EB0, #25D366, #138808);
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    footer {
+        padding: 25px 15px 85px 15px; /* Extra bottom padding so mobile bar doesn't overlap text */
+        font-size: 13.5px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 10px 4px;
+    }
+
+    .glass-card {
+        padding: 16px 8px;
+        border-radius: 18px;
+    }
+
+    .hero-main-content {
+        grid-template-columns: 100px 1fr;
+        gap: 8px;
+    }
+
+    .doctor-col .doctor {
+        width: 90px;
+    }
+
+    .doctor-col .doctor-glow {
+        width: 100px;
+        height: 100px;
+    }
+
+    .doctor-col .speech {
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+
+    .doctor-col .badge {
+        font-size: 9.5px;
+        padding: 4px 6px;
+    }
+
+    .offer-tag {
+        font-size: 10.5px;
+        padding: 5px 12px;
+        margin-bottom: 10px;
+    }
+
+    .hero-header-section h1 {
+        font-size: 22px;
+    }
+
+    .offer-subheading {
+        font-size: 14.5px;
+    }
+
+    .subtitle {
+        font-size: 12.5px;
+        margin-bottom: 14px;
+    }
+
+    .countdown-box {
+        gap: 4px;
+    }
+
+    .countdown-box div {
+        padding: 8px 2px;
+        border-radius: 10px;
+    }
+
+    .countdown-box span {
+        font-size: 18px;
+    }
+
+    .countdown-box p {
+        font-size: 9.5px;
+    }
+
+    .offer-card {
+        padding: 10px 6px;
+        gap: 8px;
+    }
+
+    .offer-icon {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 17px;
+    }
+
+    .offer-card h3 {
+        font-size: 13px;
+    }
+
+    .offer-card p {
+        font-size: 10.5px;
+    }
+
+    .trust div {
+        font-size: 10.5px;
+        padding: 8px 4px;
+    }
+
+}
+
+/* ==========================================
+   POPUP MODAL (MOBILE RESPONSIVE & KEYBOARD-FRIENDLY)
+========================================== */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 57, 112, 0.35);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 430px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 35px 24px 28px 24px;
+    border-radius: 26px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18), 0 0 80px rgba(255, 255, 255, 0.3);
+    animation: popup .35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    margin: auto;
+}
+
+@keyframes popup {
+    from {
+        transform: scale(.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.popup-box h2 {
+    color: #063970;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.popup-box p {
+    margin-bottom: 20px;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.popup-box input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1.5px solid rgba(10, 94, 176, 0.2);
+    background: #ffffff;
+    border-radius: 12px;
+    font-size: 16px; /* 16px prevents iOS Safari auto-zoom! */
+    color: #063970;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    -webkit-appearance: none;
+}
+
+.popup-box input::placeholder {
+    color: #718096;
+}
+
+.popup-box input:focus {
+    border-color: #0A5EB0;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(10, 94, 176, 0.15);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0A5EB0, #138808);
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(10, 94, 176, 0.25);
+    min-height: 50px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(10, 94, 176, 0.35);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.85;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.close-popup {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: rgba(0, 0, 0, 0.06);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 36px;
+    cursor: pointer;
+    color: #4b5563;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.close-popup:hover {
+    background: rgba(0, 0, 0, 0.12);
+    color: #000;
+}
+
+/* Spinner Styles */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success Animation Styles */
+.success-message-container {
+    padding: 20px 10px;
+    text-align: center;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.success-message-container h3 {
+    color: #138808;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.success-message-container p {
+    color: #4b5563;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Checkmark drawing animation */
+.checkmark-wrapper {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.checkmark {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #138808;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s forwards;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    stroke: #138808;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke: #fff;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: none;
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 40px #138808;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   THANK YOU MESSAGE & MEDIKOP VIP TOKEN PASS
+========================================== */
+
+.thank-you-title {
+    color: #063970;
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.thank-you-title span {
+    color: #138808;
+}
+
+.thank-you-sub {
+    color: #4b5563;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* ==========================================
+   ULTRA COMPACT SMART PASS CARD (360x180px)
+========================================== */
+
+.smart-token-pass {
+    width: 100%;
+    max-width: 360px;
+    margin: 12px auto;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 247, 255, 0.95));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid #0A5EB0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 10px 25px rgba(6, 57, 112, 0.15);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.smart-pass-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(10, 94, 176, 0.2);
+}
+
+.smart-logo {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+}
+
+.smart-badge {
+    background: linear-gradient(135deg, #0A5EB0, #138808);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+.smart-code-box {
+    background: linear-gradient(135deg, #063970, #0A5EB0);
+    color: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.smart-lbl {
+    font-size: 9.5px;
+    color: #ffd700;
+    font-weight: 700;
+    margin-right: 6px;
+    letter-spacing: 0.5px;
+}
+
+.smart-code {
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.smart-copy-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.smart-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.smart-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 8px;
+    background: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.smart-details-grid div span {
+    color: #6b7280;
+    font-size: 10.5px;
+}
+
+.smart-details-grid div strong {
+    color: #063970;
+    font-weight: 700;
+}
+
+.smart-footer-bar {
+    background: #fff8e6;
+    border: 1px solid #ffe082;
+    color: #975a16;
+    font-size: 10.5px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.token-actions {
+    margin-top: 16px;
+}
+
+.print-token-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #138808, #2e7d32);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(19, 136, 8, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.print-token-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(19, 136, 8, 0.4);
+}
+
+/* Print Specific Styles (Guaranteed 1-Page PDF Output) */
+@page {
+    size: A4 portrait;
+    margin: 10mm;
+}
+
+@media print {
+    html, body {
+        height: auto !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    /* Hide landing page background elements completely from print flow */
+    .top-navbar, 
+    .hero, 
+    footer, 
+    .mobile-bottom-bar, 
+    .bg-circle, 
+    .particles, 
+    #confetti-container {
+        display: none !important;
+    }
+
+    /* Target popup overlay & token pass card only */
+    #popupForm {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        background: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+    }
+
+    .popup-box {
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 400px !important;
+    }
+
+    .thank-you-title {
+        font-size: 20px !important;
+        margin-top: 0 !important;
+    }
+
+    .thank-you-sub {
+        font-size: 12px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .checkmark-wrapper {
+        margin: 0 auto 8px auto !important;
+    }
+
+    .checkmark {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .close-popup, 
+    .token-actions, 
+    .copy-token-btn {
+        display: none !important;
+    }
+
+    .smart-token-pass {
+        border: 2px solid #0A5EB0 !important;
+        box-shadow: none !important;
+        margin: 0 auto !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}
+
+/* ==========================================
+   SNACKS & 3-STEP CLAIM PROCESS BANNER (BIG & INTERESTING)
+========================================== */
+
+.snacks-claim-banner {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 246, 224, 0.95) 50%, rgba(240, 247, 255, 0.95) 100%);
+    border: 2.5px solid #ff9900;
+    border-radius: 30px;
+    padding: 35px 28px;
+    margin-bottom: 35px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(255, 153, 0, 0.2), 0 0 0 6px rgba(255, 255, 255, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.snacks-headline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #d90429, #ff5722, #ff9900);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 9px 24px;
+    border-radius: 40px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 6px 20px rgba(217, 4, 41, 0.3);
+    margin-bottom: 16px;
+    animation: badgePulse 2s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.snacks-title {
+    font-size: clamp(22px, 4.5vw, 32px);
+    font-weight: 800;
+    color: #063970;
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.snacks-sub {
+    font-size: 15px;
+    color: #4b5563;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.highlight-gold {
+    color: #d97706;
+    background: linear-gradient(135deg, #d97706, #ff9900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 153, 0, 0.4);
+}
+
+.claim-steps-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.step-card {
+    flex: 1;
+    min-width: 220px;
+    max-width: 310px;
+    background: #ffffff;
+    border: 2px solid rgba(10, 94, 176, 0.15);
+    border-radius: 24px;
+    padding: 22px 18px 18px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-card-1 { border-top: 4px solid #0A5EB0; }
+.step-card-2 { border-top: 4px solid #ff7a00; }
+.step-card-3 { border-top: 4px solid #16a34a; }
+
+.step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(10, 94, 176, 0.18);
+    border-color: #0A5EB0;
+}
+
+.step-badge {
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    background: linear-gradient(135deg, #063970, #0A5EB0);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(6, 57, 112, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.step-card-2 .step-badge {
+    background: linear-gradient(135deg, #ff5722, #ff9900);
+}
+
+.step-card-3 .step-badge {
+    background: linear-gradient(135deg, #138808, #2e7d32);
+}
+
+.step-icon {
+    font-size: 32px;
+    min-width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f7ff, #e6f0fa);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.step-text {
+    text-align: left;
+}
+
+.step-text strong {
+    display: block;
+    font-size: 15px;
+    color: #063970;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.step-text p {
+    font-size: 12.5px;
+    color: #4b5563;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.step-arrow {
+    font-size: 24px;
+    color: #ff9900;
+    font-weight: 900;
+    animation: arrowGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes arrowGlow {
+    0%, 100% { transform: translateX(0); opacity: 0.7; }
+    50% { transform: translateX(5px); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .snacks-claim-banner {
+        padding: 22px 14px;
+        margin-bottom: 24px;
+        border-radius: 22px;
+    }
+
+    .snacks-headline-badge {
+        font-size: 12px;
+        padding: 7px 16px;
+    }
+
+    .snacks-title {
+        font-size: 19px;
+        margin-bottom: 8px;
+    }
+
+    .snacks-sub {
+        font-size: 13.5px;
+        margin-bottom: 18px;
+    }
+
+    .claim-steps-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .step-card {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 16px 14px;
+    }
+
+    .step-arrow {
+        display: none;
+    }
 }
