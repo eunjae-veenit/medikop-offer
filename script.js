@@ -196,10 +196,9 @@ leadForm.addEventListener("submit", function (e) {
     btnText.style.display = "none";
     submitSpinner.style.display = "inline-block";
 
-    // Generate 100% Guaranteed Unique Medikop Token Code (Timestamp + Random)
-    const timePart = Date.now().toString().slice(-4);
-    const randomPart = Math.floor(1000 + Math.random() * 9000);
-    const tokenId = `MDK-2026-${timePart}${randomPart}`;
+    // Generate Short 4-Digit Unique Medikop Token Code (e.g. MDK-8492)
+    const randomTokenNum = Math.floor(1000 + Math.random() * 9000);
+    const tokenId = `MDK-${randomTokenNum}`;
 
     // Prepare JSON payload
     const payload = {
