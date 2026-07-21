@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medikop | Independence Day Offer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Floating Background -->
+
+    <div class="bg-circle one"></div>
+    <div class="bg-circle two"></div>
+    <div class="bg-circle three"></div>
+
+    <div class="particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+    <!-- Top Navbar Header -->
+    <header class="top-navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="medikop-logo.jpeg" alt="Medikop Life Science" class="nav-logo-img">
+            </a>
+
+            <div class="nav-banner">
+                <span>🇮🇳 Independence Day Mega Healthcare Offer 🇮🇳</span>
+            </div>
+
+            <button class="nav-claim-btn claim-trigger" id="navClaimBtn">
+                🎉 Claim Offer
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <div class="glass-card">
+
+            <!-- LEFT -->
+
+            <div class="left">
+
+                <div class="doctor-area">
+
+                    <div class="doctor-glow"></div>
+
+                    <img src="Boy.png" class="doctor" alt="Doctor">
+
+                    <div class="speech">
+
+                        👋 Grab The Offer!
+
+                    </div>
+
+                    <div class="badges-container">
+                        <div class="badge badge1">
+                            💙 7.5% OFF
+                        </div>
+
+                        <div class="badge badge2">
+                            🔥 4% OFF
+                        </div>
+
+                        <div class="badge badge3">
+                            🎁 FREE GIFT
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="right">
+
+                <div class="offer-tag">
+
+                    LIMITED TIME OFFER
+
+                </div>
+
+                <h1>
+                    Celebrate <span class="highlight-title">Independence Day</span>
+                    <span class="offer-subheading">
+                        With Exclusive Healthcare Savings
+                    </span>
+                </h1>
+
+                <p class="subtitle">
+
+                    Special festive offers exclusively for healthcare professionals.
+                    Visit our stall and enjoy exciting discounts and guaranteed gifts.
+
+                </p>
+
+                <div class="countdown-box">
+
+                    <div>
+
+                        <span id="days">00</span>
+
+                        <p>Days</p>
+
+                    </div>
+
+                    <div>
+
+                        <span id="hours">00</span>
+
+                        <p>Hours</p>
+
+                    </div>
+
+                    <div>
+
+                        <span id="minutes">00</span>
+
+                        <p>Minutes</p>
+
+                    </div>
+
+                    <div>
+
+                        <span id="seconds">00</span>
+
+                        <p>Seconds</p>
+
+                    </div>
+
+                </div>
+
+                <div class="offer-card">
+
+                    <div class="offer-icon">
+
+                        💙
+
+                    </div>
+
+                    <div>
+
+                        <h3>Visit Stall</h3>
+
+                        <p>Medikop LifeScience Stall at no 2D12 hall no 2 for Surprise Offers.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="offer-card">
+
+                    <div class="offer-icon">
+
+                        🔥
+
+                    </div>
+
+                    <div>
+
+                        <h3>Buy Today</h3>
+
+                        <p>Goods of Rs.10000 & Get 7.5% off.</p>
+
+                    </div>
+
+                </div>
+                <div class="offer-card">
+
+                    <div class="offer-icon">
+
+                        🎁
+
+                    </div>
+
+                    <div>
+
+                        <h3>Valid Till 15th August 2026</h3>
+
+                        <p>Buy Goods of Rs.10000 & Get 5% off</p>
+
+                    </div>
+
+                </div>
+
+                <div class="validity">
+
+                    📅 Offer Valid Till
+
+                    <strong>
+
+                        15 August 2026
+
+                    </strong>
+
+                </div>
+
+                <a href="#" class="claim-btn" id="claimBtn">
+                    <span>🎉 Claim Offer Now</span>
+                    ➜
+                </a>
+
+
+                <div class="trust">
+
+                    <div>
+
+                        ✔ Genuine Products
+
+                    </div>
+
+                    <div>
+
+                        ✔ Assured Gifts
+
+                    </div>
+
+                    <div>
+
+
+                        ✔ Trusted Healthcare Partner
+
+                    </div>
+
+                    <div>
+
+                        ✔ Limited Period Offer
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Bottom -->
+
+    <footer>
+        © 2026 Medikop Healthcare | Happy Independence Day 🇮🇳
+    </footer>
+
+    <!-- Mobile Bottom Floating Bar -->
+    <div class="mobile-bottom-bar">
+        <button class="mobile-claim-btn claim-trigger">
+            🎉 Claim Offer Now ➜
+        </button>
+    </div>
+
+    <div id="confetti-container"></div>
+    <!-- ================= Popup Form ================= -->
+
+    <div id="popupForm" class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button class="close-popup" id="closePopup">&times;</button>
+
+            <h2>🎉 Claim Your Offer</h2>
+
+            <p>Fill your details to get your Independence Day offer.</p>
+
+            <form id="leadForm">
+
+                <input type="text" id="name" placeholder="Full Name" required>
+
+                <input type="tel" id="mobile" placeholder="Mobile Number" maxlength="10" required>
+
+                <input type="text" id="city" placeholder="City" required>
+
+                <input type="text" id="company" placeholder="Company / Hospital Name (Optional)">
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Submit</span>
+                    <span class="spinner" id="submitSpinner" style="display: none;"></span>
+                </button>
+
+            </form>
+
+            <div id="successMessage" style="display:none;" class="success-message-container">
+                <div class="checkmark-wrapper">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+
+                <h3 class="thank-you-title">🎉 Thank You, <span id="thankYouName">Valued Customer</span>!</h3>
+                <p class="thank-you-sub">Your Independence Day Offer Token Pass has been generated successfully.</p>
+
+                <!-- Token Voucher Card -->
+                <div class="token-card" id="tokenCard">
+                    <div class="token-card-top-bar">
+                        🇮🇳 MEDIKOP LIFE SCIENCE OFFICIAL OFFER PASS 🇮🇳
+                    </div>
+
+                    <div class="token-card-header">
+                        <img src="medikop-logo.jpeg" alt="Medikop Life Science" class="token-logo">
+                        <div class="token-badge-pill">VIP OFFER TOKEN</div>
+                    </div>
+
+                    <div class="token-number-box">
+                        <span class="token-label">YOUR UNIQUE TOKEN NUMBER</span>
+                        <div class="token-code-row">
+                            <h2 class="token-code" id="displayTokenCode">MDK-2026-XXXXXX</h2>
+                            <button type="button" class="copy-token-btn" id="copyTokenBtn" title="Copy Token Code">
+                                📋 <span id="copyBtnText">Copy</span>
+                            </button>
+                        </div>
+                        <!-- Decorative Barcode Graphic -->
+                        <div class="barcode-graphic">
+                            <svg viewBox="0 0 200 30" class="barcode-svg" preserveAspectRatio="none">
+                                <rect x="5" y="0" width="3" height="30" fill="#ffffff" />
+                                <rect x="11" y="0" width="6" height="30" fill="#ffffff" />
+                                <rect x="20" y="0" width="2" height="30" fill="#ffffff" />
+                                <rect x="25" y="0" width="8" height="30" fill="#ffffff" />
+                                <rect x="36" y="0" width="4" height="30" fill="#ffffff" />
+                                <rect x="43" y="0" width="7" height="30" fill="#ffffff" />
+                                <rect x="53" y="0" width="2" height="30" fill="#ffffff" />
+                                <rect x="58" y="0" width="5" height="30" fill="#ffffff" />
+                                <rect x="66" y="0" width="9" height="30" fill="#ffffff" />
+                                <rect x="78" y="0" width="3" height="30" fill="#ffffff" />
+                                <rect x="84" y="0" width="6" height="30" fill="#ffffff" />
+                                <rect x="93" y="0" width="4" height="30" fill="#ffffff" />
+                                <rect x="100" y="0" width="8" height="30" fill="#ffffff" />
+                                <rect x="111" y="0" width="2" height="30" fill="#ffffff" />
+                                <rect x="116" y="0" width="5" height="30" fill="#ffffff" />
+                                <rect x="124" y="0" width="7" height="30" fill="#ffffff" />
+                                <rect x="134" y="0" width="3" height="30" fill="#ffffff" />
+                                <rect x="140" y="0" width="6" height="30" fill="#ffffff" />
+                                <rect x="149" y="0" width="2" height="30" fill="#ffffff" />
+                                <rect x="154" y="0" width="8" height="30" fill="#ffffff" />
+                                <rect x="165" y="0" width="4" height="30" fill="#ffffff" />
+                                <rect x="172" y="0" width="7" height="30" fill="#ffffff" />
+                                <rect x="182" y="0" width="3" height="30" fill="#ffffff" />
+                                <rect x="188" y="0" width="6" height="30" fill="#ffffff" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="token-details-grid">
+                        <div class="token-detail-item">
+                            <span class="detail-label">Customer Name</span>
+                            <strong class="detail-val" id="displayCustomerName">-</strong>
+                        </div>
+                        <div class="token-detail-item">
+                            <span class="detail-label">Mobile Number</span>
+                            <strong class="detail-val" id="displayCustomerMobile">-</strong>
+                        </div>
+                        <div class="token-detail-item">
+                            <span class="detail-label">City</span>
+                            <strong class="detail-val" id="displayCustomerCity">-</strong>
+                        </div>
+                        <div class="token-detail-item">
+                            <span class="detail-label">Valid Until</span>
+                            <strong class="detail-val highlight-green">15 August 2026</strong>
+                        </div>
+                    </div>
+
+                    <div class="token-offer-summary">
+                        <div class="stall-badge">📍 VISIT STALL NO. 2D12 (HALL NO. 2)</div>
+                        <p class="offer-desc">🎉 Enjoy <strong>7.5% OFF / 5% OFF</strong> on Medical Goods & Get Guaranteed Gift!</p>
+                    </div>
+
+                    <div class="token-footer-note">
+                        📸 <strong>Please screenshot or save this token pass</strong> and present it at our Medikop stall to redeem your offer.
+                    </div>
+                </div>
+
+                <div class="token-actions">
+                    <button type="button" class="print-token-btn" id="printTokenBtn" onclick="window.print()">
+                        🖨️ Save / Print Token Pass
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
